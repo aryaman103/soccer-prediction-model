@@ -1,15 +1,10 @@
-# ⚽ GoalCast FC
+# GoalCast FC
 
 **AI-Powered Football Match Outcome Prediction System**
 
-![Python](https://img.shields.io/badge/Python-3.8+-blue)
-![XGBoost](https://img.shields.io/badge/XGBoost-ML-green)
-![Streamlit](https://img.shields.io/badge/Streamlit-Dashboard-red)
-![StatsBomb](https://img.shields.io/badge/StatsBomb-Data-orange)
-
 GoalCast FC is a comprehensive machine learning project that predicts football match outcomes (home win, draw, away win) using historical team statistics and advanced features derived from StatsBomb Open Data.
 
-## 🎯 Project Overview
+## Project Overview
 
 ### Key Features
 - **Data Processing**: Converts StatsBomb JSON data to structured datasets
@@ -26,7 +21,7 @@ GoalCast FC is a comprehensive machine learning project that predicts football m
 - **Optimization**: Automated hyperparameter tuning
 - **Validation**: Time-series split to prevent data leakage
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 goalcast-fc/
@@ -51,7 +46,7 @@ goalcast-fc/
 └── README.md                      # This file
 ```
 
-## 🚀 Quick Start
+## Quick Start
 
 ### 1. Installation
 
@@ -106,7 +101,7 @@ python scripts/league_simulator.py sample_league_fixtures.csv --simulations 1000
 streamlit run predict_dashboard.py
 ```
 
-## 📊 Features Engineered
+## Features Engineered
 
 ### Team Statistics (Home & Away)
 - **Goal Metrics**: Average goals for/against, goal difference
@@ -124,7 +119,7 @@ streamlit run predict_dashboard.py
 - **xG Advantage**: (Home xG) - (Away xG)
 - **Possession Advantage**: (Home Possession) - (Away Possession)
 
-## 🤖 Model Details
+## Model Details
 
 ### Algorithm: XGBoost Classifier
 - **Objective**: Multi-class classification (3 classes)
@@ -132,19 +127,6 @@ streamlit run predict_dashboard.py
 - **Optimization**: Optuna with 100 trials
 - **Validation**: Chronological train/test split (70/30)
 - **Early Stopping**: Prevents overfitting
-
-### Key Hyperparameters
-```python
-{
-    'max_depth': 6,
-    'learning_rate': 0.1,
-    'n_estimators': 300,
-    'subsample': 0.8,
-    'colsample_bytree': 0.8,
-    'reg_alpha': 1.0,
-    'reg_lambda': 1.0
-}
-```
 
 ## ⚽ League Table Simulator
 
@@ -176,7 +158,6 @@ python scripts/league_simulator.py fixtures.csv --output-prefix "season_2024"
 - `league_simulation_predictions.csv`: Individual match predictions
 
 ## 📈 Usage Examples
-
 ### Command Line Prediction
 
 ```bash
@@ -190,49 +171,7 @@ python scripts/predict.py fixtures.csv --output my_predictions.csv
 python scripts/predict.py fixtures.csv --model-dir path/to/models
 ```
 
-### Python API Usage
-
-```python
-from scripts.train import MatchOutcomePredictor
-
-# Initialize predictor
-predictor = MatchOutcomePredictor()
-
-# Load trained model
-predictor.load_model_artifacts()
-
-# Predict single match
-home_features = {
-    'recent_avg_goals_for': 2.1,
-    'recent_avg_xg': 1.8,
-    'recent_form_points': 2.4,
-    # ... other features
-}
-
-away_features = {
-    'recent_avg_goals_for': 1.6,
-    'recent_avg_xg': 1.3,
-    'recent_form_points': 1.2,
-    # ... other features
-}
-
-prediction = predictor.predict_match_outcome(home_features, away_features)
-print(prediction)
-# {'home_win_prob': 0.45, 'draw_prob': 0.25, 'away_win_prob': 0.30, 'predicted_outcome': 'home_win'}
-```
-
-### Dashboard Features
-
-The Streamlit dashboard provides:
-- **File Upload**: Upload CSV files with fixture data
-- **Sample Data**: Generate demo fixtures for testing
-- **Real-time Predictions**: Get instant predictions with probabilities
-- **Visualizations**: Charts showing outcome distributions and confidence levels
-- **Model Metrics**: Display current model performance
-- **Feature Importance**: See which features matter most
-- **Download Results**: Export predictions as CSV
-
-## 📝 Input Data Format
+## Input Data Format
 
 ### Required CSV Columns for Predictions
 
@@ -251,7 +190,7 @@ fixture_id,home_team,away_team,match_date,home_recent_avg_goals_for,away_recent_
 - `match_date`: Date of the match
 - All feature columns (defaults used if missing)
 
-## 📊 Model Evaluation
+## Model Evaluation
 
 ### Performance Metrics
 ```
@@ -283,7 +222,7 @@ Away        9     5    19
 9. `home_recent_avg_xg` - Home team expected goals
 10. `away_recent_avg_xg` - Away team expected goals
 
-## 🔧 Configuration
+## Configuration
 
 ### Environment Variables
 ```bash
@@ -305,25 +244,6 @@ python scripts/train.py
 streamlit run predict_dashboard.py
 ```
 
-## 🛠️ Development
-
-### Project Dependencies
-- **pandas**: Data manipulation and analysis
-- **numpy**: Numerical computing
-- **scikit-learn**: Machine learning utilities
-- **xgboost**: Gradient boosting framework
-- **optuna**: Hyperparameter optimization
-- **streamlit**: Web dashboard framework
-- **plotly**: Interactive visualizations
-- **matplotlib/seaborn**: Static plotting
-
-### Adding New Features
-
-1. **Modify `features.py`**: Add feature computation logic
-2. **Update training**: Retrain model with new features
-3. **Test predictions**: Verify predictions work with new features
-4. **Update dashboard**: Ensure UI handles new features
-
 ### Testing
 ```bash
 # Run preprocessing test
@@ -339,28 +259,6 @@ python scripts/train.py
 python scripts/predict.py --create-sample
 python scripts/predict.py sample_fixtures.csv
 ```
-
-## 📚 Background & Methodology
-
-### Data Source
-**StatsBomb Open Data** provides comprehensive football match and event data including:
-- Match results and basic statistics
-- Detailed event data (passes, shots, tackles, etc.)
-- Advanced metrics like expected goals (xG)
-- Player and team performance data
-
-### Feature Engineering Philosophy
-1. **Historical Context**: Use rolling averages over recent matches
-2. **Team Strength**: Capture offensive and defensive capabilities
-3. **Form**: Recent performance trends
-4. **Home Advantage**: Account for playing at home
-5. **Relative Metrics**: Direct team comparisons
-
-### Model Choice: XGBoost
-- **Handles Mixed Data Types**: Numerical features with different scales
-- **Feature Importance**: Built-in interpretability
-- **Robust Performance**: Good with small-medium datasets
-- **Hyperparameter Optimization**: Works well with Optuna
 
 ## 🤝 Contributing
 
@@ -418,3 +316,6 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ---
 
 **⚽ GoalCast FC - Where Data Meets Football Passion! 🏆** 
+=======
+``` 
+>>>>>>> a1029be552d2468d6cb63cd3d07e69cda5706476
