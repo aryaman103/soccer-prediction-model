@@ -1,10 +1,10 @@
-# ⚽ GoalCast FC
+# GoalCast FC
 
 **AI-Powered Football Match Outcome Prediction System**
 
 GoalCast FC is a comprehensive machine learning project that predicts football match outcomes (home win, draw, away win) using historical team statistics and advanced features derived from StatsBomb Open Data.
 
-## 🎯 Project Overview
+## Project Overview
 
 ### Key Features
 - **Data Processing**: Converts StatsBomb JSON data to structured datasets
@@ -20,7 +20,7 @@ GoalCast FC is a comprehensive machine learning project that predicts football m
 - **Optimization**: Automated hyperparameter tuning
 - **Validation**: Time-series split to prevent data leakage
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 goalcast-fc/
@@ -44,7 +44,7 @@ goalcast-fc/
 └── README.md                      # This file
 ```
 
-## 🚀 Quick Start
+## Quick Start
 
 ### 1. Installation
 
@@ -95,7 +95,7 @@ python scripts/predict.py sample_fixtures.csv --output predictions.csv
 streamlit run predict_dashboard.py
 ```
 
-## 📊 Features Engineered
+## Features Engineered
 
 ### Team Statistics (Home & Away)
 - **Goal Metrics**: Average goals for/against, goal difference
@@ -113,7 +113,7 @@ streamlit run predict_dashboard.py
 - **xG Advantage**: (Home xG) - (Away xG)
 - **Possession Advantage**: (Home Possession) - (Away Possession)
 
-## 🤖 Model Details
+## Model Details
 
 ### Algorithm: XGBoost Classifier
 - **Objective**: Multi-class classification (3 classes)
@@ -135,7 +135,7 @@ python scripts/predict.py fixtures.csv --output my_predictions.csv
 python scripts/predict.py fixtures.csv --model-dir path/to/models
 ```
 
-## 📝 Input Data Format
+## Input Data Format
 
 ### Required CSV Columns for Predictions
 
@@ -154,7 +154,7 @@ fixture_id,home_team,away_team,match_date,home_recent_avg_goals_for,away_recent_
 - `match_date`: Date of the match
 - All feature columns (defaults used if missing)
 
-## 📊 Model Evaluation
+## Model Evaluation
 
 ### Performance Metrics
 ```
@@ -186,7 +186,7 @@ Away        9     5    19
 9. `home_recent_avg_xg` - Home team expected goals
 10. `away_recent_avg_xg` - Away team expected goals
 
-## 🔧 Configuration
+## Configuration
 
 ### Environment Variables
 ```bash
