@@ -16,6 +16,7 @@ GoalCast FC is a comprehensive machine learning project that predicts football m
 - **Feature Engineering**: Creates 30+ team-level features including xG, form, possession, etc.
 - **ML Model**: XGBoost classifier with hyperparameter optimization using Optuna
 - **CLI Prediction**: Command-line interface for predicting new fixtures
+- **League Simulator**: Monte Carlo simulation of entire league seasons with confidence intervals
 - **Interactive Dashboard**: Streamlit web app for real-time predictions and visualizations
 - **Comprehensive Analysis**: Jupyter notebook for exploratory data analysis
 
@@ -43,7 +44,8 @@ goalcast-fc/
 │   ├── preprocess.py              # Data preprocessing pipeline
 │   ├── features.py                # Feature engineering module
 │   ├── train.py                   # Model training with optimization
-│   └── predict.py                 # CLI prediction interface
+│   ├── predict.py                 # CLI prediction interface
+│   └── league_simulator.py        # League table simulation tool
 ├── predict_dashboard.py           # Streamlit web dashboard
 ├── requirements.txt               # Python dependencies
 └── README.md                      # This file
@@ -91,6 +93,10 @@ python scripts/predict.py --create-sample
 
 # Predict outcomes for fixtures
 python scripts/predict.py sample_fixtures.csv --output predictions.csv
+
+# Create sample league fixtures and simulate season
+python scripts/league_simulator.py --create-sample
+python scripts/league_simulator.py sample_league_fixtures.csv --simulations 1000
 ```
 
 ### 5. Launch Dashboard
@@ -139,6 +145,35 @@ streamlit run predict_dashboard.py
     'reg_lambda': 1.0
 }
 ```
+
+## ⚽ League Table Simulator
+
+The League Simulator uses Monte Carlo simulation to predict final league standings based on fixture predictions:
+
+### Features
+- **Complete Season Simulation**: Predicts outcomes for entire fixture lists
+- **Monte Carlo Analysis**: Runs thousands of simulations for statistical confidence
+- **League Table Generation**: Calculates points, goal differences, and final positions
+- **Probability Analysis**: Shows championship, top 4, and relegation probabilities
+- **Confidence Intervals**: Provides uncertainty ranges for final positions
+
+### Usage
+
+```bash
+# Create sample league fixtures
+python scripts/league_simulator.py --create-sample
+
+# Simulate season with custom number of simulations
+python scripts/league_simulator.py sample_league_fixtures.csv --simulations 5000
+
+# Save results with custom prefix
+python scripts/league_simulator.py fixtures.csv --output-prefix "season_2024"
+```
+
+### Output Files
+- `league_simulation_table.csv`: Final simulated league table
+- `league_simulation_stats.csv`: Detailed simulation statistics
+- `league_simulation_predictions.csv`: Individual match predictions
 
 ## 📈 Usage Examples
 
@@ -374,6 +409,8 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - [ ] **Deep Learning Models**: Neural networks for comparison
 - [ ] **Betting Odds Integration**: Market-based features
 - [ ] **Multi-League Support**: Expand beyond single competition
+- [ ] **Advanced League Simulations**: Cup competitions, playoffs, promotion/relegation
+- [ ] **Interactive Season Tracker**: Real-time league position updates
 - [ ] **API Deployment**: REST API for predictions
 - [ ] **Mobile App**: React Native mobile interface
 - [ ] **Real-time Updates**: Live match prediction updates
